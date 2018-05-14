@@ -4,12 +4,25 @@ const store = () => new Vuex.Store({
     state: {
         trendPolls: [],
         recentPolls: [],
+        detailPoll:{}
     },
     mutations: {
     },
     getters:{
     },
     actions: {
+        GET_DETAIL_POLL({commit, state, getters},{id}){
+            // this.$axios.$get("api/theme/popular")
+            //     .then((response) => {
+            //         state.popularContents = response.data
+            //     });
+            console.log(id)
+            state.detailPoll =
+                {
+                    "id":9999999,
+                    "title":"this is detail"
+                };
+        },
         GET_RECENT_POLL({commit, state, getters}){
             // this.$axios.$get("api/theme/popular")
             //     .then((response) => {
