@@ -20,7 +20,29 @@ const store = () => new Vuex.Store({
             state.detailPoll =
                 {
                     "id":9999999,
-                    "title":"this is detail"
+                    "title":"this is detail",
+                    "qs":[
+                        {
+                            id:222,
+                            ask:"",
+                            vote: 34
+                        },
+                        {
+                            id:3333,
+                            ask:"",
+                            vote:32
+                        },
+                        {
+                            id:4444,
+                            ask:"",
+                            vote:1
+                        },
+                        {
+                            id:555,
+                            ask:"",
+                            vote:99
+                        },
+                    ]
                 };
         },
         GET_RECENT_POLL({commit, state, getters}){

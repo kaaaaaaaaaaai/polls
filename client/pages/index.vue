@@ -5,8 +5,8 @@
       <p class="title is-1 is-spaced">とれんど</p>
     </section>
       <section class="section">
-        <div class="columns  is-multiline is-mobile is-centered">
-          <div v-for="(value, key, index) in trendPolls" :key="index" class="column is-3">
+        <div class="columns is-mobile is-multiline is-centered">
+          <div v-for="(value, key, index) in trendPolls" :key="index" class="column is-12-mobile is-3-desktop">
             <div>
                 <div class="box">
                     <p>this poll id is : {{value.id}}</p>
@@ -21,7 +21,7 @@
       </section>
       <section class="section">
         <div class="columns  is-multiline is-mobile is-centered">
-          <div v-for="(value, key, index) in recentPolls" :key="index" class="column is-3">
+          <div v-for="(value, key, index) in recentPolls" :key="index" class="column is-12-mobile is-3-desktop">
             <div>
                 <div class="box">
                     <p>this poll id is : {{value.id}}</p>
