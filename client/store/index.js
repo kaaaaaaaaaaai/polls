@@ -31,27 +31,27 @@ const store = () => new Vuex.Store({
             state.detailPoll =
                 {
                     "id":9999999,
-                    "title":"this is detail",
+                    "title":"コカコーラと三ツ矢サイダーならどっちが好き？",
                     "totalVote":4,
                     "qs":[
                         {
                             id:222,
-                            ask:"korekroe",
+                            ask:"コカコーラ",
                             vote: 1
                         },
                         {
                             id:3333,
-                            ask:"qwqwqwqw",
+                            ask:"三ツ矢サイダー",
                             vote:1
                         },
                         {
                             id:4444,
-                            ask:"tytytytyty",
+                            ask:"炭酸ならなんでもいい",
                             vote:1
                         },
                         {
                             id:555,
-                            ask:"nmnmnmnmn",
+                            ask:"がぶ飲みメロンソーダ",
                             vote:1
                         },
                     ]

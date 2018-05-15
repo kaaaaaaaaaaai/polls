@@ -3,12 +3,14 @@
         <section class="section">
             <div class="columns  is-multiline is-centered">
                 <div class="column is-10">
-                    <div>
-                        <div class="box">
-                            <p>detail</p>
-                            <p>id: {{detailPoll.id}}</p>
-                            <p>title: {{detailPoll.title}}</p>
-                        </div>
+                    <div class="box pollBox">
+                        <p class="is-size-1	has-text-grey-dark has-text-centered has-text-weight-bold"><!--
+                        -->{{detailPoll.title}}<!--
+                        --></p>
+                            <p class="has-text-weight-light has-text-right">
+                                <img src="/id-card.png" style="height: 26px"/>
+                                id:{{detailPoll.id}}
+                            </p>
                     </div>
                 </div>
             </div>
@@ -20,7 +22,6 @@
                         v-if="isVote"
                         class="box"
                         v-bind:style="{ backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }">
-                        <p>detail</p>
                         <p>id: {{value.id}}</p>
                         <p>title: {{value.ask}}</p>
                         <p>vote: {{value.vote}}</p>
@@ -28,10 +29,7 @@
                     </div>
                     <a v-else @click="vote(value.id); countUp(key)" >
                         <div class="box">
-                            <p>detail</p>
-                            <p>id: {{value.id}}</p>
                             <p>title: {{value.ask}}</p>
-                            <p>vote: {{value.vote}}</p>
                         </div>
                     </a>
                 </div>
@@ -39,6 +37,12 @@
         </section>
     </div>
 </template>
+
+<style scoped>
+.pollBox{
+    background-color: #FFFCFC
+}
+</style>
 
 <script>
     import { mapState } from 'vuex'
@@ -86,6 +90,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>
