@@ -11,6 +11,16 @@ const store = () => new Vuex.Store({
     getters:{
     },
     actions: {
+        POST_POLL({commit, state, getters},{voteId}){
+            // this.$axios.$get("api/theme/popular")
+            //     .then((response) => {
+            //         state.popularContents = response.data
+            //     });
+            console.log("POST_POLL");
+        },
+        COUNT_UP_POLL({state}, {key}){
+            state.detailPoll.qs[key].vote++
+        },
         GET_DETAIL_POLL({commit, state, getters},{id}){
             // this.$axios.$get("api/theme/popular")
             //     .then((response) => {
@@ -21,25 +31,26 @@ const store = () => new Vuex.Store({
                 {
                     "id":9999999,
                     "title":"this is detail",
+                    "totalVote":166,
                     "qs":[
                         {
                             id:222,
-                            ask:"",
+                            ask:"korekroe",
                             vote: 34
                         },
                         {
                             id:3333,
-                            ask:"",
+                            ask:"qwqwqwqw",
                             vote:32
                         },
                         {
                             id:4444,
-                            ask:"",
+                            ask:"tytytytyty",
                             vote:1
                         },
                         {
                             id:555,
-                            ask:"",
+                            ask:"nmnmnmnmn",
                             vote:99
                         },
                     ]
