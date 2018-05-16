@@ -21,19 +21,17 @@
                     <div v-if="isVote"
                         class="box flex has-text-centered"
                         v-bind:style="{ backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }">
-                        <!--<p>id: {{value.id}}</p>-->
-                        <p>title: {{value.ask}}</p>
-                        <p>vote: {{value.vote}}</p>
-                        <p>ratio: {{voteRatio(value.vote)}}%</p>
+                        <p>{{value.ask}}</p>
+                        <p>{{voteRatio(value.vote)}}%</p>
                     </div>
-                    <div class="box flex" v-else @click="vote(value.id); countUp(key)">
+                    <div class="box flex has-text-centered" v-else @click="vote(value.id); countUp(key)">
                         <p>{{value.ask}}</p>
                     </div>
                 </div>
             </div>
         </section>
         <section class="level" style="margin-right: 10px">
-            <h1 class="level-item has-text-centered has-text-weight-bold is-size-3"><img src="/badge.png" style="height: 40px; margin-bottom: -10px"/>54 vote</h1>
+            <h1 class="level-item has-text-centered has-text-weight-bold is-size-3"><img src="/badge.png" style="height: 40px; margin-bottom: -10px"/>{{detailPoll.totalVote}} vote</h1>
         </section>
     </div>
 </template>
