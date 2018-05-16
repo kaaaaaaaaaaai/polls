@@ -4,11 +4,11 @@
             <div class="columns  is-multiline is-centered">
                 <div class="column is-10">
                     <div class="box pollBox">
-                        <p class="has-text-grey-dark has-text-centered has-text-weight-bold is-size-1"><!--
+                        <p class="has-text-grey-dark has-text-centered has-text-weight-bold is-size-1-desktop is-size-4-mobile"><!--
                         -->{{detailPoll.title}}<!--
                         --></p>
                             <p class="has-text-weight-light has-text-right">
-                                <img src="/id-card.png" style="height: 26px"/>
+                                <img src="/id-card.png" style="height: 30px;margin-bottom: -10px;"/>
                                 id:{{detailPoll.id}}
                             </p>
                     </div>
@@ -16,12 +16,7 @@
             </div>
         </section>
         <section class="section">
-            <div class="">
-                <h1 class="has-text-weight-bold is-size-3 title is-pulled-right">54 vote</h1>
-            </div>
-        </section>
-        <section class="section">
-            <div class="columns is-mobile is-multiline is-centered">
+            <div class="columns is-mobile is-multiline is-centered has-text-weight-bold">
                 <div v-for="(value, key, index) in detailPoll.qs" :key="index" class="column is-3-desktop is-6-mobile">
                     <div v-if="isVote"
                         class="box flex has-text-centered"
@@ -31,11 +26,14 @@
                         <p>vote: {{value.vote}}</p>
                         <p>ratio: {{voteRatio(value.vote)}}%</p>
                     </div>
-                    <div class="box flex has-text-centered" v-else @click="vote(value.id); countUp(key)">
-                        <div>title: {{value.ask}}</div>
+                    <div class="box flex" v-else @click="vote(value.id); countUp(key)">
+                        <p>{{value.ask}}</p>
                     </div>
                 </div>
             </div>
+        </section>
+        <section class="level" style="margin-right: 10px">
+            <h1 class="level-item has-text-centered has-text-weight-bold is-size-3"><img src="/badge.png" style="height: 40px; margin-bottom: -10px"/>54 vote</h1>
         </section>
     </div>
 </template>
