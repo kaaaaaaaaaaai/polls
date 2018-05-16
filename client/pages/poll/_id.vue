@@ -20,7 +20,7 @@
                 <div v-for="(value, key, index) in detailPoll.qs" :key="index" class="column is-3-desktop is-6-mobile">
                     <div v-if="isVote"
                         class="box flex has-text-centered"
-                        v-bind:style="voteColor()"
+                        v-bind:style="voteColor(value.vote, value.id)"
                     >
                         <p>{{value.ask}}</p>
                         <p>{{voteRatio(value.vote)}}%</p>
@@ -54,7 +54,8 @@
         name: "_id",
         data(){
             return{
-                isVote: false
+                isVote: false,
+                votedId:0
             }
         },
         validate ({ params }) {
@@ -78,11 +79,15 @@
             store.dispatch("GET_DETAIL_POLL",{id: params.id})
         },
         mounted(){
-            this.isVote = this.$store.getters.voted_poll({id: this.detailPoll.id}).length > 0?true:false;
+            //storageに投票データがあれば投票済みにする。
+            const voted = this.$store.getters.voted_poll({id: this.detailPoll.id})
+            this.isVote = voted.length > 0?true:false;
+            this.votedId = voted.length > 0?voted.shift().voteId:0;
         },
         methods:{
             vote(id){
                 this.isVote = true;
+                this.votedId = id;
                 this.$store.dispatch("POST_POLL", {voteId:id})
                 this.$store.dispatch("SET_POLL_STORAGE", {pollId: this.detailPoll.id ,voteId:id})
             },
@@ -92,10 +97,12 @@
             voteRatio(vote){
                 return Math.round((vote / this.detailPoll.totalVote) * 100)
             },
-            voteColor(){
-                // { backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }
-                return {
-                    backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) 50%,rgba(255,255,255,0) 52%)'
+            voteColor(val, vId){
+                console.debug("voteColor", this.votedId, val, vId)
+                if(this.votedId == vId){
+                    return { backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+this.voteRatio(val)+'%,rgba(255,255,255,0) '+this.voteRatio(val)+'%)' }
+                }else{
+                    return { backgroundImage: 'linear-gradient(to right, rgba(65, 73, 92, 0.7) 0%, rgba(65, 73, 92, 0.7) '+this.voteRatio(val)+'%,rgba(255,255,255,0) '+this.voteRatio(val)+'%)' }
                 }
             }
         }

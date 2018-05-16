@@ -60,22 +60,22 @@ const store = () => new Vuex.Store({
                 {
                     "id":3,
                     "title":"コカコーラと三ツ矢サイダーならどっちが好き？",
-                    "totalVote":4,
+                    "totalVote":12,
                     "qs":[
                         {
                             id:222,
                             ask:"コカコーラ",
-                            vote: 1
+                            vote: 4
                         },
                         {
                             id:3333,
                             ask:"三ツ矢サイダー",
-                            vote:1
+                            vote:3
                         },
                         {
                             id:4444,
                             ask:"炭酸ならなんでもいい",
-                            vote:1
+                            vote:4
                         },
                         {
                             id:555,
