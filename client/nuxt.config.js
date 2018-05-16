@@ -56,5 +56,6 @@ module.exports = {
       // "@fortawesome/vue-fontawesome",
       // "@fortawesome/fontawesome-free-solid",
       // "@fortawesome/fontawesome"
-  ]
+  ],
+  plugins: [{ src: '~/plugins/nuxt-client-init.js', ssr: false }]
 }
