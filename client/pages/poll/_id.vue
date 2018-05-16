@@ -20,7 +20,8 @@
                 <div v-for="(value, key, index) in detailPoll.qs" :key="index" class="column is-3-desktop is-6-mobile">
                     <div v-if="isVote"
                         class="box flex has-text-centered"
-                        v-bind:style="{ backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }">
+                        v-bind:style="voteColor()"
+                    >
                         <p>{{value.ask}}</p>
                         <p>{{voteRatio(value.vote)}}%</p>
                     </div>
@@ -48,7 +49,7 @@
 </style>
 
 <script>
-    import { mapState } from 'vuex'
+    import { mapState, mapGetters } from 'vuex'
     export default {
         name: "_id",
         data(){
@@ -71,23 +72,31 @@
         computed:{
             ...mapState([
                          "detailPoll"
-                     ]),
+                     ])
         },
         fetch({ store, params }){
             store.dispatch("GET_DETAIL_POLL",{id: params.id})
         },
+        mounted(){
+            this.isVote = this.$store.getters.voted_poll({id: this.detailPoll.id}).length > 0?true:false;
+        },
         methods:{
             vote(id){
                 this.isVote = true;
-                console.log(id);
                 this.$store.dispatch("POST_POLL", {voteId:id})
+                this.$store.dispatch("SET_POLL_STORAGE", {pollId: this.detailPoll.id ,voteId:id})
             },
             countUp(key){
                 this.$store.dispatch("COUNT_UP_POLL", {key:key})
             },
             voteRatio(vote){
-                console.log("call ratio")
                 return Math.round((vote / this.detailPoll.totalVote) * 100)
+            },
+            voteColor(){
+                // { backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }
+                return {
+                    backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) 50%,rgba(255,255,255,0) 52%)'
+                }
             }
         }
     }
