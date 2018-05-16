@@ -4,7 +4,7 @@
             <div class="columns  is-multiline is-centered">
                 <div class="column is-10">
                     <div class="box pollBox">
-                        <p class="is-size-1	has-text-grey-dark has-text-centered has-text-weight-bold"><!--
+                        <p class="has-text-grey-dark has-text-centered has-text-weight-bold is-size-1"><!--
                         -->{{detailPoll.title}}<!--
                         --></p>
                             <p class="has-text-weight-light has-text-right">
@@ -16,22 +16,24 @@
             </div>
         </section>
         <section class="section">
+            <div class="">
+                <h1 class="has-text-weight-bold is-size-3 title is-pulled-right">54 vote</h1>
+            </div>
+        </section>
+        <section class="section">
             <div class="columns is-mobile is-multiline is-centered">
                 <div v-for="(value, key, index) in detailPoll.qs" :key="index" class="column is-3-desktop is-6-mobile">
-                    <div
-                        v-if="isVote"
-                        class="box"
+                    <div v-if="isVote"
+                        class="box flex has-text-centered"
                         v-bind:style="{ backgroundImage: 'linear-gradient(to right, rgb(255, 106, 0) 0%, rgb(255, 106, 0) '+voteRatio(value.vote)+'%,rgba(255,255,255,0) '+voteRatio(value.vote)+'%)' }">
-                        <p>id: {{value.id}}</p>
+                        <!--<p>id: {{value.id}}</p>-->
                         <p>title: {{value.ask}}</p>
                         <p>vote: {{value.vote}}</p>
                         <p>ratio: {{voteRatio(value.vote)}}%</p>
                     </div>
-                    <a v-else @click="vote(value.id); countUp(key)" >
-                        <div class="box">
-                            <p>title: {{value.ask}}</p>
-                        </div>
-                    </a>
+                    <div class="box flex has-text-centered" v-else @click="vote(value.id); countUp(key)">
+                        <div>title: {{value.ask}}</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -41,6 +43,11 @@
 <style scoped>
 .pollBox{
     background-color: #FFFCFC
+}
+.flex {
+    /*display: flex;*/
+    /*width: 100%;*/
+    height: 100%;
 }
 </style>
 
