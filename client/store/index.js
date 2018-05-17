@@ -40,10 +40,10 @@ const store = () => new Vuex.Store({
             localStorage.setItem("votedPolls", JSON.stringify(state.votedPolls));
         },
         POST_POLL({commit, state, getters},{voteId}){
-            // this.$axios.$get("api/theme/popular")
-            //     .then((response) => {
-            //         state.popularContents = response.data
-            //     });
+            this.$axios.$post(`api/question/vote/${voteId}`)
+                .then((response) => {
+                    //state.popularContents = response.data
+                });
             console.log("POST_POLL");
         },
         COUNT_UP_POLL({state}, {key}){

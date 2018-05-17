@@ -19,6 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(["prefix" => "poll"], function(){
     Route::get("recent", "PollController@recent");
-    Route::get("detail/{id}", "PollController@detail");
+    Route::get("detail/{id}", "PollController@detail")->where("id","[0-9+]");
     Route::get("popular", "PollController@popular");
+});
+Route::group(["prefix" => "question"], function() {
+
+    Route::post("vote/{id}", "QuestionController@vote")->where("id","[0-9+]");
 });
