@@ -1,31 +1,44 @@
 <template>
     <section class="section">
         <div class="box">
-            <nav class="level">
+            <nav class="level is-mobile ">
                 <div class="level-item has-text-centered">
-                    <div>
+                    <div class="is-hidden-mobile">
                         <img src="/search.png" class="siteDescription--image"/>
-                        <p class="heading m-top is-size-3">つくる</p>
+                        <p class="m-top is-size-3">つくる</p>
+                    </div>
+                    <div class="is-hidden-desktop">
+                        <figure class="image is-48x48">
+                            <img src="/search.png"/>
+
+                        </figure>
+                            <p class="m-top is-size-6-mobile has-text-weight-bold">つくる</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
-                    <!--<i class="fas fa-angle-right fa-4x"></i>-->
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
+                    <div class="is-hidden-mobile">
                         <img src="/email.png" class="siteDescription--image"/>
                         <!--<i class="fas fa-retweet fa-5x"></i>-->
-                        <p class="heading m-top is-size-3">しぇあする</p>
+                        <p class="m-top is-size-3">しぇあする</p>
+                    </div>
+                    <div class="is-hidden-desktop">
+                        <figure class="image is-48x48">
+                            <img src="/email.png"/>
+                        </figure>
+                            <p class="m-top is-size-6-mobile has-text-weight-bold">しぇあ</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
-                    <!--<i class="fas fa-angle-right fa-4x"></i>-->
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
+                    <div class="is-hidden-mobile">
                         <img src="/report.png" class="siteDescription--image"/>
                         <!--<i class="fas fa-hourglass-start fa-5x"></i>-->
-                        <p class="heading m-top is-size-3">けっかをみる</p>
+                        <p class="m-top is-size-3">けっかをみる</p>
+                    </div>
+                    <div class="is-hidden-desktop">
+                        <figure class="image is-48x48">
+                            <img src="/report.png"/>
+                        </figure>
+                            <p class="m-top is-size-6-mobile has-text-weight-bold">けっか</p>
                     </div>
                 </div>
             </nav>
@@ -48,5 +61,8 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
         width: 100px;
         margin-bottom: 20px;
 
+    }
+    .m-top{
+        padding-top: 10px;
     }
 </style>

@@ -15,4 +15,9 @@ class Poll extends Model
     public function question(){
         return $this->belongsToMany(Question::class);
     }
+
+    public function countVote(){
+        //questionの合計vote
+        return $this->question->sum("vote");
+    }
 }

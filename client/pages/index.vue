@@ -1,12 +1,15 @@
 <template>
   <div>
     <site-description/>
-    <section class="section">
-      <p class="title is-1 is-spaced">とれんど</p>
-    </section>
+    <!--<section class="section">-->
+      <!--<p class="title is-1 is-spaced">とれんど</p>-->
+    <!--</section>-->
+      <section class="hero p-left-5">
+        <h1 class="title is-1 is-spaced"> # Trend</h1>
+      </section>
       <section class="section">
         <div class="columns is-mobile is-multiline is-centered">
-          <div v-for="(value, key, index) in trendPolls" :key="index" class="column is-12-mobile is-3-desktop">
+          <div v-for="(value, key, index) in trendPolls" :key="index" class="column is-12-mobile is-3-desktop is-6-tablet">
               <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
                 <div class="box">
                     <p>this poll id is : {{value.id}}</p>
@@ -35,8 +38,8 @@
 </template>
 
 <style scoped>
-  .m-top{
-    margin-top: 20px;
+  .p-left-5{
+    padding-left: 5px;
   }
 </style>
 

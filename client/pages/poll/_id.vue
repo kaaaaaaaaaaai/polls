@@ -18,16 +18,16 @@
         </section>
         <section class="section">
             <div class="columns is-mobile is-multiline is-centered has-text-weight-bold">
-                <div v-for="(value, key, index) in detailPoll.qs" :key="index" class="column is-3-desktop is-6-mobile">
+                <div v-for="(value, key, index) in detailPoll.questions" :key="index" class="column is-3-desktop is-6-mobile">
                     <div v-if="isVote"
                         class="box flex has-text-centered"
                         v-bind:style="voteColor(value.vote, value.id)"
                     >
-                        <p>{{value.ask}}</p>
+                        <p>{{value.title}}</p>
                         <p>{{voteRatio(value.vote)}}%</p>
                     </div>
                     <div class="box flex has-text-centered" v-else @click="vote(value.id); countUp(key)">
-                        <p>{{value.ask}}</p>
+                        <p>{{value.title}}</p>
                     </div>
                 </div>
             </div>
@@ -76,8 +76,9 @@
                          "detailPoll"
                      ])
         },
-        fetch({ store, params }){
-            store.dispatch("GET_DETAIL_POLL",{id: params.id})
+        async asyncData({ store, params }){
+            console.log("feeeeeeeeeeeeeetch")
+            return await store.dispatch("GET_DETAIL_POLL",{id: params.id})
         },
         mounted(){
             //storageに投票データがあれば投票済みにする。

@@ -34,6 +34,28 @@ class PollsRepository
      */
     public function getRecent($limit = 12)
     {
-        return $this->poll->orderBy("created_at", "DESC")->paginate($limit);
+        return $this->poll->orderBy("created_at", "DESC")->with("question")->paginate($limit);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->poll->with("question")->find($id);
+    }
+
+    /**
+     * @param int $limit
+     * @return mixed
+     * voteを数えて、rankingにするのがめんどいのでupdateがあった順で
+     */
+    public function getPopular($limit = 12)
+    {
+        return $this->poll->orderBy("updated_at", "DESC")->with("question")->paginate($limit);
+
+
+    }
+
 }

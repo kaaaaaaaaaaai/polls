@@ -24,7 +24,9 @@ class PollResource extends JsonResource
             "id" => $this->id,
             "updated_at" => $this->updated_at->format("Y-m-d h:m:i"),
             "title" => $this->title,
-            "questions" => QuestionResource::collection($this->question)
+            "totalVote" => $this->countVote(),
+//            "questions" => QuestionResource::collection($this->question)
+            "questions" => QuestionResource::collection($this->whenLoaded('question'))
         ];
     }
 }

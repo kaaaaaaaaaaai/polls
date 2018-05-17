@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(["prefix" => "poll"], function(){
     Route::get("recent", "PollController@recent");
+    Route::get("detail/{id}", "PollController@detail");
+    Route::get("popular", "PollController@popular");
 });
