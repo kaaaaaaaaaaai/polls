@@ -8,8 +8,9 @@
                         -->{{detailPoll.title}}<!--
                         --></p>
                             <p class="has-text-weight-light has-text-right">
+                                <span class="has-text-weight-bold is-size-9-mobile is-size-4-desktop">
                                 <img src="/id-card.png" style="height: 30px;margin-bottom: -10px;"/>
-                                id:{{detailPoll.id}}
+                                #####</span>
                             </p>
                     </div>
                 </div>
