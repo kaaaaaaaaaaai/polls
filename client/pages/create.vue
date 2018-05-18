@@ -4,99 +4,56 @@
             <div class="column is-10">
                 <div class="box">
                     <section class="section">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
+                        <div class="field">
                             <label class="label is-size-3">Polly Title </label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-large" type="text" placeholder="Question.....">
-                                </p>
+
+                            <div class="control">
+                                <input class="input is-large" type="text" name="pollTitle" v-model="postData.title" placeholder="Question.....">
                             </div>
                         </div>
-                    </div>
+                        <div class="field">
+                            <label class="label">詳細</label>
+                            <div class="control">
+                                <input class="input" type="text" v-model="postData.description" placeholder="Text input">
+                            </div>
+                            <p class="help"></p>
+                        </div>
                     </section>
                 </div>
             </div>
         </div>
-
-        <div class="columns  is-multiline is-centered">
-            <div class="column is-6-desktop mobile">
-                <div class="box pollBox">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label is-size-3 has-text-grey-dark">Title 1</label>
-                        </div>
-                        <div class="field-body">
+        <a @click="addQuestion">
+            <span class="tag is-info is-large">回答を増やす</span>
+        </a>
+        <div class="columns is-multiline is-centered">
+            <div v-for="(value, key, index) in postData.questions" :key="index" class="column is-6-desktop is-12-mobile">
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
                             <div class="field">
-                                <p class="control">
-                                    <input class="input is-large" type="text" placeholder="here.....">
-                                </p>
+                                <label class="label">Title {{key + 1}}</label>
+                                <div class="control">
+                                    <input class="input" type="text" v-model="value.title" placeholder="e.g Alex Smith">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-6-desktop mobile">
-                <div class="box pollBox">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label is-size-3 has-text-grey-dark">Title 2</label>
+                        <div class="media-right">
+                            <button class="delete" @click="deleteQuestion(key)"></button>
                         </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-large" type="text" placeholder="here.....">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-6-desktop mobile">
-                <div class="box pollBox">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label is-size-3 has-text-grey-dark">Title 3</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-large" type="text" placeholder="here.....">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-6-desktop mobile">
-                <div class="box pollBox">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label is-size-3 has-text-grey-dark">Title 4</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-large" type="text" placeholder="here.....">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
         <div class="columns  is-multiline is-centered">
-                <div class="column is-4">
-                <a>
+            <div class="column is-4">
+                <a @click="create">
                     <div class="box">
                         <section class="section">
                             <span class="label is-size-2 has-text-grey-dark has-text-centered">Create</span>
                         </section>
                     </div>
                 </a>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -105,7 +62,51 @@
 <script>
     import { mapState, mapGetters } from 'vuex'
     export default {
-        name: "create"
+        name: "create",
+        data(){
+            return {
+                postData: {
+                    title: "",
+                    description:"",
+                    questions:[
+                        {
+                            "title":null
+                        }
+                    ]
+                },
+            }
+        },
+        methods:{
+            addQuestion(){
+                if(this.postData.questions.length == 8){
+                    this.$toast.open({
+                        duration: 5000,
+                        message: `回答を8以上にすることはできません。`,
+                        position: 'is-bottom',
+                        type: 'is-danger'
+                    })
+                }else {
+                    this.postData.questions.push({
+                        "title": null
+                    })
+                }
+            },
+            deleteQuestion(key){
+                if(this.postData.questions.length == 1){
+                    this.$toast.open({
+                        duration: 5000,
+                        message: `回答を0以下にすることはできません。`,
+                        position: 'is-bottom',
+                        type: 'is-danger'
+                    })
+                }else{
+                    this.postData.questions.splice(key, 1);
+                }
+            },
+            create(){
+                this.$store.dispatch("CREATE_POLL", this.postData);
+            }
+        }
     }
 </script>
 

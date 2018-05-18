@@ -55,6 +55,8 @@ const store = () => new Vuex.Store({
                 .then((response) => {
                     console.log(response.data);
                     state.detailPoll = response.data
+                }).catch((response) => {
+                    throw new Error("api error");
                 });
         },
         GET_RECENT_POLL({commit, state, getters}){
@@ -69,6 +71,12 @@ const store = () => new Vuex.Store({
                     state.trendPolls = response.data
                 });
 
+        },
+        CREATE_POLL({commit, state, getters}, data){
+            this.$axios.$post("api/poll/create", data)
+                .then((response) => {
+
+                });
         }
     }
 })

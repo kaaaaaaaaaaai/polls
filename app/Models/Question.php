@@ -14,9 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Question extends Model
 {
-    //
+
     //他もupdate_at更新
     protected $touches = array('poll');
+    protected $fillable = ["title"];
 
     public function poll(){
         return $this->belongsToMany(poll::class);

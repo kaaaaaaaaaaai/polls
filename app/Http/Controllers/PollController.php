@@ -71,7 +71,7 @@ class PollController extends Controller
             true
         );
     }
-    public function create(){
+    public function create(Request $request){
         //1000x500の画像生成
         $im = imagecreate (1000, 500);
         //背景色決定
@@ -90,13 +90,15 @@ class PollController extends Controller
         $size = 20;
 //ThankU!
         $font1 = public_path("hs6.ttc");
-        $str = $this->array_wordwrap("ああああああああああああああああああああああああああああいいいいいいいいいいいいいいいいいいいいいいいいうううううううううううううううううううううううううううううううううううううううううえええええええええええええええええええええええええええええええおおおおおおおおおおおおおおおおおおおおおおおおおおおかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかかきききききききききききききききききききききききききききききききききききききききききききききききき255");
+        $str = $this->array_wordwrap($request->get("title"));
         $tb = imagettfbbox($size, 0, $font1, $str);
         $x = ceil((1000 - $tb[2]) / 2); //640は画像の幅
         $y = ceil((500 - $tb[3]) / 2); //640は画像の幅
         $font_color = ImageColorAllocate ($im, $bg_colors["font_color"]["r"], $bg_colors["font_color"]["g"], $bg_colors["font_color"]["b"]);
         ImageTTFText ($im, $size, 0, $x, $y, $font_color, $font1, $str);//size, angle,x,y,color,font,string
-        //$d = $this->themeRepository->save($request->all());
-        imagejpeg($im, public_path("test.jpg"));
+
+        $sData = $this->pollRepository->save($request->all());
+
+        imagejpeg($im, public_path("poll_img/{$sData->id}.jpg"));
     }
 }

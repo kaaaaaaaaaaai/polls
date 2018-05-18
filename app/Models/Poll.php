@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Poll extends Model
 {
     protected $table = "polls";
+    protected $fillable = ["title", "description"];
 
     public function question(){
         return $this->belongsToMany(Question::class);

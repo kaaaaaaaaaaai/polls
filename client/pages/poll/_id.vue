@@ -76,9 +76,11 @@
                          "detailPoll"
                      ])
         },
-        async asyncData({ store, params }){
+        async asyncData({ store, params, error }){
             console.log("feeeeeeeeeeeeeetch")
-            return await store.dispatch("GET_DETAIL_POLL",{id: params.id})
+            return await store.dispatch("GET_DETAIL_POLL",{id: params.id}).catch(()=>{
+                error({ statusCode: 404, message: 'Post not found' });
+            })
         },
         mounted(){
             //storageに投票データがあれば投票済みにする。

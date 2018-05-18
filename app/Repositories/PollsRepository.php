@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Models\Poll;
+use App\Models\Question;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,9 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PollsRepository
 {
-    public function __construct(Poll $poll)
+    public function __construct(Poll $poll, Question $question)
     {
         $this->poll = $poll;
+        $this->question = $question;
     }
 
     /**
@@ -54,8 +56,18 @@ class PollsRepository
     public function getPopular($limit = 12)
     {
         return $this->poll->orderBy("updated_at", "DESC")->with("question")->paginate($limit);
+    }
 
 
+    public function save($data)
+    {
+        $this->poll->fill($data)->save();
+        foreach ($data["questions"] as $qs){
+            $question = new Question();
+            $q = $question->fill($qs);
+            $this->poll->question()->save($q);
+        }
+        return $this->poll;
     }
 
 }

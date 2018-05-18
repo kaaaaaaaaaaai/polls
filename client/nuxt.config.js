@@ -43,6 +43,7 @@ module.exports = {
     }
   },
   axios: {
+      credentials: true,
       baseURL:process.env.FRONT_API_URL,
   },
   //  cache: true,
