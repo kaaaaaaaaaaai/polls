@@ -88,7 +88,6 @@ class PollController extends Controller
 
         $bg = ImageColorAllocate ($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
         $size = 20;
-//ThankU!
         $font1 = public_path("hs6.ttc");
         $str = $this->array_wordwrap($request->get("title"));
         $tb = imagettfbbox($size, 0, $font1, $str);

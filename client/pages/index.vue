@@ -12,7 +12,7 @@
           <div v-for="(value, key, index) in trendPolls" :key="index" class="column is-12-mobile is-3-desktop is-6-tablet">
               <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
                 <div class="box">
-                    <p>this poll id is : {{value.id}}</p>
+                    <p><img :src="`http://localhost:8000/poll_img/${value.id}.jpg`" /></p>
                     <p>this poll title is : {{value.title}}</p>
                 </div>
               </nuxt-link>
