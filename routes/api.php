@@ -21,6 +21,8 @@ Route::group(["prefix" => "poll"], function(){
     Route::get("recent", "PollController@recent");
     Route::get("detail/{id}", "PollController@detail")->where("id","[0-9+]");
     Route::get("popular", "PollController@popular");
+    Route::post("create", "PollController@create");
+
 });
 Route::group(["prefix" => "question"], function() {
 
