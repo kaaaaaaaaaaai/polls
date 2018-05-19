@@ -73,10 +73,7 @@ const store = () => new Vuex.Store({
 
         },
         CREATE_POLL({commit, state, getters}, data){
-            this.$axios.$post("api/poll/create", data)
-                .then((response) => {
-
-                });
+            return this.$axios.$post("api/poll/create", data)
         }
     }
 })

@@ -73,6 +73,7 @@ class PollController extends Controller
     }
     public function create(Request $request){
         //1000x500の画像生成
+        die;
         $im = imagecreate (1000, 500);
         //背景色決定
         $bg_colors = [

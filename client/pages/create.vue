@@ -74,6 +74,9 @@
                     questions:[
                         {
                             "title":null
+                        },
+                        {
+                            "title":null
                         }
                     ]
                 },
@@ -95,10 +98,10 @@
                 }
             },
             deleteQuestion(key){
-                if(this.postData.questions.length == 1){
+                if(this.postData.questions.length <= 2){
                     this.$toast.open({
                         duration: 5000,
-                        message: `回答を0以下にすることはできません。`,
+                        message: `回答を2以下にすることはできません。`,
                         position: 'is-bottom',
                         type: 'is-danger'
                     })
@@ -106,8 +109,12 @@
                     this.postData.questions.splice(key, 1);
                 }
             },
-            create(){
-                this.$store.dispatch("CREATE_POLL", this.postData);
+            async create(){
+                await this.$store.dispatch("CREATE_POLL", this.postData).then(() => {
+                    this.$router.replace({ path: '/' });
+                }).catch(()=>{
+
+                });
             }
         }
     }

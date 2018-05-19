@@ -11,7 +11,6 @@
                         <div class="is-hidden-desktop is-hidden-tablet">
                             <figure class="image is-48x48">
                                 <img src="/search.png"/>
-
                             </figure>
                                 <p class="m-top is-size-6-mobile has-text-weight-bold">つくる</p>
                         </div>

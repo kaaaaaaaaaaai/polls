@@ -26,9 +26,7 @@
           <div class="field is-grouped">
             <p class="control">
               <nuxt-link :to="{name:'create'}" class="button is-primary">
-                <span class="icon">
-                <i class="fas fa-plus-circle"></i>
-              </span>
+
                 <span>Create</span>
               </nuxt-link>
             </p>
@@ -53,11 +51,15 @@
 </template>
 
 <script>
-  export default {
+    import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+    export default {
       data(){
           return {
               isMenuActive:false
           }
+      },
+      components: {
+          FontAwesomeIcon
       }
   }
 </script>
