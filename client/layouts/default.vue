@@ -3,7 +3,7 @@
   <nav class="navbar is-transparent">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <div class="is-size-4">投票箱</div>
+        <div class="is-size-4">Polly -投票箱-</div>
       </a>
       <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="isMenuActive = !isMenuActive" :class="{'is-active': isMenuActive}">
         <span></span>
@@ -14,7 +14,7 @@
 
     <div id="navbarExampleTransparentExample" class="navbar-menu" :class="{'is-active': isMenuActive}" >
       <div class="navbar-start">
-          <nuxt-link :to="{name:'/'}" class="navbar-item">
+          <nuxt-link :to="{name:'index'}" class="navbar-item">
           Home
           </nuxt-link>
         <div class="navbar-item has-dropdown is-hoverable">

@@ -56,18 +56,24 @@
         data(){
             return{
                 isVote: false,
-                votedId:0
+                votedId:0,
+                metaTitle:""
             }
         },
         validate ({ params }) {
             // 数値でなければならない
             return /^\d+$/.test(params.id)
         },
-        head () {
-            return {
+         head ({context}) {
+             return {
                 title: this.detailPoll.title,
                 meta: [
-                    { hid: 'description', name: 'description', content: 'My custom description' }
+                    { hid: 'description', name: 'description', content: '投票しよう！' },
+                    { hid: 'twitter:description', name: 'twitter:description', content: '投票しよう！' },
+                    { hid: 'twitter:title', name: 'twitter:title', content: `${this.detailPoll.title}に投票しよう。Polly-投票箱-` },
+                    { hid: 'og:url', name: 'og:url', content: `${this.$nuxt.$route.fullPath}` },
+                    { hid: 'og:image', name: 'og:image', content: `${context.apiUrl}/img/ogp.jpg` },
+                    { hid: 'twitter:url', name: 'twitter:url', content: `${this.$nuxt.$route.fullPath}` },
                 ]
             }
         },
@@ -77,7 +83,6 @@
                      ])
         },
         async asyncData({ store, params, error }){
-            console.log("feeeeeeeeeeeeeetch")
             return await store.dispatch("GET_DETAIL_POLL",{id: params.id}).catch(()=>{
                 error({ statusCode: 404, message: 'Post not found' });
             })

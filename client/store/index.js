@@ -50,11 +50,12 @@ const store = () => new Vuex.Store({
             state.detailPoll.questions[key].vote++;
             state.detailPoll.totalVote++;
         },
-        GET_DETAIL_POLL({commit, state, getters},{id}){
+         GET_DETAIL_POLL({commit, state, getters},{id}){
             return this.$axios.$get(`api/poll/detail/${id}`)
                 .then((response) => {
                     console.log(response.data);
-                    state.detailPoll = response.data
+                    state.detailPoll = response.data;
+                    //resolve("aaa");
                 }).catch((response) => {
                     throw new Error("api error");
                 });

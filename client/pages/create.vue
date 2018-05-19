@@ -49,6 +49,7 @@
         </section>
         <div class="columns  is-multiline is-centered">
             <div class="column is-4">
+                <span class="label has-text-danger has-text-centered">{{this.validation.create}}</span>
                 <a @click="create">
                     <div class="box">
                         <section class="section">
@@ -66,6 +67,14 @@
     import { mapState, mapGetters } from 'vuex'
     export default {
         name: "create",
+        head(){
+            return {
+                title:"",
+                meta: [
+                    { hid: 'description', name: 'description', content: 'My custom description' }
+                ]
+            }
+        },
         data(){
             return {
                 postData: {
@@ -80,6 +89,9 @@
                         }
                     ]
                 },
+                validation:{
+                    create: ""
+                }
             }
         },
         methods:{
@@ -113,7 +125,7 @@
                 await this.$store.dispatch("CREATE_POLL", this.postData).then(() => {
                     this.$router.replace({ path: '/' });
                 }).catch(()=>{
-
+                    this.validation.create = "保存できませんでした。エラーがないかお確かめください。"
                 });
             }
         }

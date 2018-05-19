@@ -5,11 +5,27 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: "%s eeee-client",
+      titleTemplate: '%s - Nuxt.js',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Polly-投票箱-は、匿名で投票をする＆投票を受け取れるサービスです。投票箱は5秒で作成完了。URLをTwitterやInstagramに投稿して、いろんな人に投票してしよう！' },
+      { hid: 'twitter:description', name: 'twitter:description', content: 'Polly-投票箱-は、匿名で投票をする＆投票を受け取れるサービスです。投票箱は5秒で作成完了。URLをTwitterやInstagramに投稿して、いろんな人に投票してしよう！' },
+      { hid: 'twitter:title', name: 'twitter:title', content: "Polly-投票箱-" },
+      { hid: 'twitter:image', name: 'twitter:image', content: `${process.env.FRONT_API_URL}/img/ogp.jpg` },
+      { hid: 'twitter:card', name: 'twitter:card', content: "summary_large_image" },
+      { hid: 'twitter:url', name: 'twitter:url', content: "" },
+      { hid: 'twitter:site', name: 'twitter:site', content: "" },
+      { hid: 'twitter:domain', name: 'twitter:domain', content: "" },
+      { hid: 'twitter:title', name: 'twitter:title', content: "Polly-投票箱-" },
+      { hid: 'og:url', name: 'og:url', content: `${process.env.CLIENT_DOMAIN}` },
+      { hid: 'og:image', name: 'og:image', content: `${process.env.FRONT_API_URL}/img/ogp.jpg` },
+      { hid: 'og:description', name: 'og:description', content: 'Polly-投票箱-は、匿名で投票をする＆投票を受け取れるサービスです。投票箱は5秒で作成完了。URLをTwitterやInstagramに投稿して、いろんな人に投票してしよう！' },
+      { hid: 'og:locale', name: 'og:locale', content: 'ja_JP' }
+
+
+
+
     ],
     script: [
         // { src: '~/static/app.js' }
@@ -54,6 +70,9 @@ module.exports = {
       // Simple usage
       'nuxt-buefy',
       "@nuxtjs/axios",
+      ['@nuxtjs/google-analytics', {
+          id: 'paste your id here'
+      }]
       // "@fortawesome/vue-fontawesome",
       // "@fortawesome/fontawesome-free-solid",
       // "@fortawesome/fontawesome"
