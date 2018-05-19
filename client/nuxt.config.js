@@ -71,7 +71,7 @@ module.exports = {
       'nuxt-buefy',
       "@nuxtjs/axios",
       ['@nuxtjs/google-analytics', {
-          id: 'paste your id here'
+          id: 'UA-119527059-1'
       }]
       // "@fortawesome/vue-fontawesome",
       // "@fortawesome/fontawesome-free-solid",
