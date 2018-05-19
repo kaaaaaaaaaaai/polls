@@ -25,12 +25,12 @@
       <section class="section">
         <div class="columns  is-multiline is-mobile is-centered">
           <div v-for="(value, key, index) in recentPolls" :key="index" class="column is-12-mobile is-3-desktop">
-            <div>
-                <div class="box">
-                    <p>this poll id is : {{value.id}}</p>
-                    <p>this poll title is : {{value.title}}</p>
-                </div>
-            </div>
+              <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
+                  <div class="box">
+                      <p><img :src="`http://localhost:8000/poll_img/${value.id}.jpg`" /></p>
+                      <p>this poll title is : {{value.title}}</p>
+                  </div>
+              </nuxt-link>
           </div>
         </div>
       </section>

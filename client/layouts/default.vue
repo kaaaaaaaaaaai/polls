@@ -1,34 +1,66 @@
 <template>
   <div>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <h1>
-            <div class="is-size-4">投票箱</div>
-          </h1>
-        </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+  <nav class="navbar is-transparent">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <div class="is-size-4">投票箱</div>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="isMenuActive = !isMenuActive" :class="{'is-active': isMenuActive}">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </nav>
-    <nuxt/>
+    </div>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <p>
-            (๑•̀ㅂ•́)و✧ 蚊がマジうざい　٩(•౪• ٩)
-          </p>
+    <div id="navbarExampleTransparentExample" class="navbar-menu" :class="{'is-active': isMenuActive}" >
+      <div class="navbar-start">
+          <nuxt-link :to="{name:'/'}" class="navbar-item">
+          Home
+          </nuxt-link>
+        <div class="navbar-item has-dropdown is-hoverable">
         </div>
       </div>
-    </footer>
 
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <nuxt-link :to="{name:'create'}" class="button is-primary">
+                <span class="icon">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+                <span>Create</span>
+              </nuxt-link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nuxt/>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          (๑•̀ㅂ•́)و✧ 蚊がマジうざい　٩(•౪• ٩)
+        </p>
+      </div>
+    </div>
+  </footer>
   </div>
 </template>
 
+<script>
+  export default {
+      data(){
+          return {
+              isMenuActive:false
+          }
+      }
+  }
+</script>
 <style>
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

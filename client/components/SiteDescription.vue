@@ -3,17 +3,19 @@
         <div class="box">
             <nav class="level is-mobile ">
                 <div class="level-item has-text-centered">
-                    <div class="is-hidden-mobile">
-                        <img src="/search.png" class="siteDescription--image"/>
-                        <p class="m-top is-size-3">つくる</p>
-                    </div>
-                    <div class="is-hidden-desktop">
-                        <figure class="image is-48x48">
-                            <img src="/search.png"/>
+                    <nuxt-link :to="{name:'create'}" >
+                        <div class="is-hidden-mobile">
+                            <img src="/search.png" class="siteDescription--image"/>
+                            <p class="m-top is-size-3">つくる</p>
+                        </div>
+                        <div class="is-hidden-desktop is-hidden-tablet">
+                            <figure class="image is-48x48">
+                                <img src="/search.png"/>
 
-                        </figure>
-                            <p class="m-top is-size-6-mobile has-text-weight-bold">つくる</p>
-                    </div>
+                            </figure>
+                                <p class="m-top is-size-6-mobile has-text-weight-bold">つくる</p>
+                        </div>
+                    </nuxt-link>
                 </div>
                 <div class="level-item has-text-centered">
                     <div class="is-hidden-mobile">
@@ -21,7 +23,7 @@
                         <!--<i class="fas fa-retweet fa-5x"></i>-->
                         <p class="m-top is-size-3">しぇあする</p>
                     </div>
-                    <div class="is-hidden-desktop">
+                    <div class="is-hidden-desktop is-hidden-tablet">
                         <figure class="image is-48x48">
                             <img src="/email.png"/>
                         </figure>
@@ -34,7 +36,7 @@
                         <!--<i class="fas fa-hourglass-start fa-5x"></i>-->
                         <p class="m-top is-size-3">けっかをみる</p>
                     </div>
-                    <div class="is-hidden-desktop">
+                    <div class="is-hidden-desktop is-hidden-tablet">
                         <figure class="image is-48x48">
                             <img src="/report.png"/>
                         </figure>

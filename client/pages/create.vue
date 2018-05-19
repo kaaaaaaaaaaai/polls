@@ -22,18 +22,16 @@
                 </div>
             </div>
         </div>
-        <a @click="addQuestion">
-            <span class="tag is-info is-large">回答を増やす</span>
-        </a>
+
         <div class="columns is-multiline is-centered">
             <div v-for="(value, key, index) in postData.questions" :key="index" class="column is-6-desktop is-12-mobile">
                 <div class="box">
                     <article class="media">
                         <div class="media-content">
                             <div class="field">
-                                <label class="label">Title {{key + 1}}</label>
+                                <label class="label">Answer {{key + 1}}</label>
                                 <div class="control">
-                                    <input class="input" type="text" v-model="value.title" placeholder="e.g Alex Smith">
+                                    <input class="input" type="text" v-model="value.title" placeholder="回答...">
                                 </div>
                             </div>
                         </div>
@@ -44,6 +42,11 @@
                 </div>
             </div>
         </div>
+        <section class="has-text-centered" style="padding-bottom: 24px">
+            <a @click="addQuestion">
+                <span class="button is-info is-large">回答を増やす</span>
+            </a>
+        </section>
         <div class="columns  is-multiline is-centered">
             <div class="column is-4">
                 <a @click="create">
