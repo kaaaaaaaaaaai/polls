@@ -74,6 +74,8 @@
                     { hid: 'og:url', name: 'og:url', content: `${this.$nuxt.$route.fullPath}` },
                     { hid: 'og:image', name: 'og:image', content: `${process.env.apiUrl}/poll_img/${this.detailPoll.id}.jpg` },
                     { hid: 'twitter:url', name: 'twitter:url', content: `${this.$nuxt.$route.fullPath}` },
+                    { hid: 'twitter:image', name: 'twitter:image', content: `${process.env.apiUrl}/poll_img/${this.detailPoll.id}.jpg` },
+
                 ]
             }
         },
