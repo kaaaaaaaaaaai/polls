@@ -64,7 +64,7 @@
             // 数値でなければならない
             return /^\d+$/.test(params.id)
         },
-         head ({context}) {
+         head () {
              return {
                 title: this.detailPoll.title,
                 meta: [
@@ -72,7 +72,7 @@
                     { hid: 'twitter:description', name: 'twitter:description', content: '投票しよう！' },
                     { hid: 'twitter:title', name: 'twitter:title', content: `${this.detailPoll.title}に投票しよう。Polly-投票箱-` },
                     { hid: 'og:url', name: 'og:url', content: `${this.$nuxt.$route.fullPath}` },
-                    { hid: 'og:image', name: 'og:image', content: `${context.apiUrl}/img/ogp.jpg` },
+                    { hid: 'og:image', name: 'og:image', content: `${process.env.apiUrl}/poll_img/${this.detailPoll.id}.jpg` },
                     { hid: 'twitter:url', name: 'twitter:url', content: `${this.$nuxt.$route.fullPath}` },
                 ]
             }

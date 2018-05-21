@@ -27,7 +27,7 @@
           <div v-for="(value, key, index) in recentPolls" :key="index" class="column is-12-mobile is-3-desktop">
               <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
                   <div class="box">
-                      <p><img :src="`http://localhost:8000/poll_img/${value.id}.jpg`" /></p>
+                      <p><img :src="`${env}/poll_img/${value.id}.jpg`" /></p>
                       <p>this poll title is : {{value.title}}</p>
                   </div>
               </nuxt-link>
@@ -52,6 +52,11 @@ export default {
   components: {
     AppLogo, SiteDescription
   },
+    data(){
+      return {
+          env: process.env.apiUrl
+      }
+    },
   computed: mapState([
         "trendPolls",
         "recentPolls"

@@ -3,7 +3,7 @@
   <nav class="navbar is-transparent">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <div class="is-size-4">Polly -投票箱-</div>
+        <div class="is-size-3">Polly -投票箱-</div>
       </a>
       <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" @click="isMenuActive = !isMenuActive" :class="{'is-active': isMenuActive}">
         <span></span>
