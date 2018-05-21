@@ -115,6 +115,10 @@ class PollController extends Controller
                     $str = $this->array_wordwrap($request->get("title"), $width);
                     break;
             }
+            //変換
+            if(gd_info()["JIS-mapped Japanese Font Support"]){
+                $str = mb_convert_encoding($str,"SJIS", 'UTF-8');
+            }
             //$this->array_wordwrap($request->get("title"), $width);
             $tb = imagettfbbox($size, 0, $font1, $str);
 
