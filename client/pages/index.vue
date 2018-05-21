@@ -13,7 +13,7 @@
               <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
                 <div class="box">
                     <p><img :src="`${env}/poll_img/${value.id}.jpg`" /></p>
-                    <p>this poll title is : {{value.title}}</p>
+                    <p class="is-size-9-mobile is-size-4-desktop has-text-weight-bold has-text-grey has-text-right">{{value.totalVote}} voted</p>
                 </div>
               </nuxt-link>
           </div>
@@ -28,7 +28,7 @@
               <nuxt-link :to="{name:'poll-id', params:{id:value.id}}">
                   <div class="box">
                       <p><img :src="`${env}/poll_img/${value.id}.jpg`" /></p>
-                      <p>this poll title is : {{value.title}}</p>
+                      <p class="is-size-9-mobile is-size-4-desktop has-text-weight-bold has-text-grey has-text-right">{{value.totalVote}} voted</p>
                   </div>
               </nuxt-link>
           </div>
@@ -56,6 +56,11 @@ export default {
       return {
           env: process.env.apiUrl
       }
+    },
+    head () {
+        return {
+            title: "一覧",
+        }
     },
   computed: mapState([
         "trendPolls",

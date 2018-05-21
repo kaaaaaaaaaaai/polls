@@ -69,9 +69,9 @@
         name: "create",
         head(){
             return {
-                title:"",
+                title:"作成画面",
                 meta: [
-                    { hid: 'description', name: 'description', content: 'My custom description' }
+                    { hid: 'description', name: 'description', content: '投票作成画面' }
                 ]
             }
         },

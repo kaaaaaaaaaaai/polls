@@ -5,7 +5,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-      titleTemplate: '%s - Nuxt.js',
+      titleTemplate: '%s Polly-投票箱-',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -21,11 +21,7 @@ module.exports = {
       { hid: 'og:url', name: 'og:url', content: `${process.env.CLIENT_DOMAIN}` },
       { hid: 'og:image', name: 'og:image', content: `${process.env.FRONT_API_URL}/img/ogp.jpg` },
       { hid: 'og:description', name: 'og:description', content: 'Polly-投票箱-は、匿名で投票をする＆投票を受け取れるサービスです。投票箱は5秒で作成完了。URLをTwitterやInstagramに投稿して、いろんな人に投票してしよう！' },
-      { hid: 'og:locale', name: 'og:locale', content: 'ja_JP' }
-
-
-
-
+      { hid: 'og:locale', name: 'og:locale', content: 'ja_JP' },
     ],
     script: [
         // { src: '~/static/app.js' }
