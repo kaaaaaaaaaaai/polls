@@ -69,69 +69,97 @@ class PollController extends Controller
     }
 
     private function array_wordwrap($char, $width= 25){
-        return  $this->mb_wordwrap(
-            $char,
-            $width,
-            "\n",
-            true
-        );
+        $c = mb_strlen($char);
+        $arr = [];
+        for ($i=0; $i<=$c; $i+=$width) {
+            $arr[] = mb_substr($char, $i, $width);
+        }
+        return $arr;
     }
     public function create(Request $request){
         //1000x500の画像生成
         try {
 
+        /**
+         * 背景画像の作成
+         */
+        $im = imagecreate(1000, 500);
+        //背景色決定
+        $bg_colors = $this->baseColorPick[mt_rand(0, count($this->baseColorPick) - 1)];
+        $bg = ImageColorAllocate($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
+        //fontの指定
+        $font = public_path("GenShinGothic-Bold.ttf");
 
-            $im = imagecreate(1000, 500);
-            //背景色決定
-            $bg_colors = $this->baseColorPick[mt_rand(0, count($this->baseColorPick) - 1)];
+        /**
+         * 文字を変換
+         */
+        if(gd_info()["JIS-mapped Japanese Font Support"]){
+            $convStr = mb_convert_encoding($request->get("title"),"SJIS", 'UTF-8');
+        }else{
+            $convStr = $request->get("title");
+        }
+        /**
+         * 文字サイズの調整
+         */
 
+        switch (mb_strlen($convStr)){
+            case mb_strlen($convStr) < 10:
+                $size = 70;
+                $width = 10;
+                $arrText = $this->array_wordwrap($convStr, $width);
+                break;
+            case mb_strlen($convStr) < 30:
+                $size = 50;
+                $width = 15;
+                $arrText = $this->array_wordwrap($convStr, $width);
+                break;
+            case mb_strlen($convStr) < 60:
+                $size = 35;
+                $width = 20;
+                $arrText = $this->array_wordwrap($convStr, $width);
+                break;
+            case mb_strlen($convStr) < 100:
+                $size = 30;
+                $width = 25;
+                $arrText = $this->array_wordwrap($convStr, $width);
+                break;
+            default:
+                $size = 30;
+                $width = 22;
+                $arrText = $this->array_wordwrap($convStr, $width);
+                break;
+        }
 
-            $bg = ImageColorAllocate($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
-            $font1 = public_path("hs6.ttc");
-            $str = $request->get("title");
-            switch (mb_strlen($str)){
-                case mb_strlen($str) < 10:
-                    $size = 70;
-                    $str = $request->get("title");
-                    break;
-                case mb_strlen($str) < 30:
-                    $size = 50;
-                    $width = 14;
-                    $str = $this->array_wordwrap($request->get("title"), $width);
-                    break;
-                case mb_strlen($str) < 60:
-                    $size = 40;
-                    $width = 14;
-                    $str = $this->array_wordwrap($request->get("title"), $width);
-                    break;
-                case mb_strlen($str) < 100:
-                    $size = 30;
-                    $width = 20;
-                    $str = $this->array_wordwrap($request->get("title"), $width);
-                    break;
-                default:
-                    $size = 25;
-                    $width = 22;
-                    $str = $this->array_wordwrap($request->get("title"), $width);
-                    break;
-            }
-            //変換
-            if(gd_info()["JIS-mapped Japanese Font Support"]){
-                $str = mb_convert_encoding($str,"SJIS", 'UTF-8');
-            }
-            //$this->array_wordwrap($request->get("title"), $width);
-            $tb = imagettfbbox($size, 0, $font1, $str);
+        $countLine = count($arrText);
 
-            $x = ceil((1000 - $tb[2]) / 2); //640は画像の幅
-            $y = ceil((500 - $tb[3]) / 2); //640は画像の幅
+        $margin = 5;
+        $height = ($size + $margin) * $countLine;
+        $y = ((500 - $height) / 2);
+
+        foreach($arrText as $val){
+            //文字エリアの座標を取得する関数です
+            $pos = imagettfbbox($size,0,$font,$val);
+
+            //左右中央に持ってくるため、(画像幅-文字幅)/2を開始位置とします。
+            $x = (1000 - ($pos[4] - $pos[6])) / 2;
+
+            //imagettftextで実際に文字を生成する
             $font_color = ImageColorAllocate($im, $bg_colors["font_color"]["r"], $bg_colors["font_color"]["g"], $bg_colors["font_color"]["b"]);
-            ImageTTFText($im, $size, 0, $x, $y, $font_color, $font1, $str);//size, angle,x,y,color,font,string
 
-            $sData = $this->pollRepository->save($request->all());
+            imagettftext($im, $size,0,$x,$y,$font_color,$font,$val);
 
-            imagejpeg($im, public_path("poll_img/{$sData->id}.jpg"));
-            //imagejpeg($im, public_path("poll_img/test.jpg"));
-            return new JsonResponse([$sData], 200 );
+            //縦方向の位置を文字サイズ＋行間分ずらす（これでline-height:2ぐらいになるはず）
+            $y = $y - ($pos[7] - $pos[1]) + $margin + $size;
+        }
+
+        imagejpeg($im, public_path("poll_img/test.jpg"));
+
+        $sData = $this->pollRepository->save($request->all());
+
+        imagejpeg($im, public_path("poll_img/{$sData->id}.jpg"));
+        //imagejpeg($im, public_path("poll_img/test.jpg"));
+        //imagejpeg($im, public_path("poll_img/test.jpg"));
+        return new JsonResponse([$sData], 200 );
         }catch (\Exception $e){
             return new JsonResponse(
                 [
