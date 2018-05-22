@@ -14,7 +14,7 @@ class Poll extends Model
     protected $fillable = ["title", "description"];
 
     public function question(){
-        return $this->belongsToMany(Question::class);
+        return $this->belongsToMany("App\Models\Question");
     }
 
     public function countVote(){

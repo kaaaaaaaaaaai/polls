@@ -20,6 +20,6 @@ class Question extends Model
     protected $fillable = ["title"];
 
     public function poll(){
-        return $this->belongsToMany(poll::class);
+        return $this->belongsToMany("App\Models\Poll");
     }
 }
